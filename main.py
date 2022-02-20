@@ -43,9 +43,9 @@ def change_diff(valus,difficulty):
 
 
 # 添加菜单组件
-menu.add.button("Quit", stop_game)
 menu.add.button("Play", start_game)
-menu.add.selector("Diff:", [('essay', 0), ('normal', 1), ('hard', 2)], onchange=change_diff())
+menu.add.selector("Diff:", [('easy', 8), ('normal', 16), ('hard', 24)], onchange=change_diff)
+menu.add.button("Quit", stop_game)
 
 ball = Ball()
 
@@ -60,6 +60,8 @@ while keep_running:
     if is_menu_display:
         menu.update(events)
         menu.draw(screen)
+        ball.speedx = difficult
+        ball.speedy = difficult
     else:
         screen.fill(WHITE)
         screen.blit(ball.img, (ball.x, ball.y))
