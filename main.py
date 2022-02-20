@@ -19,6 +19,7 @@ MENU_HEIGHT = 560
 keep_running = True
 menu = pygame_menu.Menu(title, MENU_WIDTH, MENU_HEIGHT, theme=pygame_menu.themes.THEME_BLUE)
 is_menu_display = True
+status = 0
 
 difficult = 5
 
@@ -62,7 +63,17 @@ while keep_running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 is_menu_display = True
-            pad.update(event.key)
+            if event.key == pygame.K_UP:
+                status = 1
+            if event.key == pygame.K_DOWN:
+                status = 2
+            if event.key == pygame.K_LEFT:
+                status = 4
+            if event.key == pygame.K_RIGHT:
+                status = 5
+        if event.type == pygame.KEYUP:
+            status = 0
+
     if is_menu_display:
         menu.update(events)
         menu.draw(screen)
@@ -73,6 +84,7 @@ while keep_running:
         screen.blit(ball.img, (ball.x, ball.y))
         g_pad.draw(screen)
         ball.sport()
+        pad.update(status)
         ball.touch_edge(SCREEN_WIDTH, SCREEN_HEIGHT)
     pygame.display.update()
     timer.tick(60)

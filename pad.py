@@ -17,12 +17,12 @@ class Pad(pygame.sprite.Sprite):
         self.rect.y = y
         self.speed = 3
 
-    def update(self, key):
-        if key == pygame.K_UP:
+    def update(self, status):
+        if status == 1:
             self.rect.y -= self.speed
-        if key == pygame.K_DOWN:
+        if status == 2:
             self.rect.y += self.speed
-        if key == pygame.K_LEFT:
+        if status == 3:
             self.rect.x -= self.speed
-        if key == pygame.K_RIGHT:
-            self.rect.x += self.speed
+        if status == 4:
+            self.rect.x -= self.speed
