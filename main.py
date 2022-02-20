@@ -68,9 +68,9 @@ while keep_running:
             if event.key == pygame.K_DOWN:
                 status = 2
             if event.key == pygame.K_LEFT:
-                status = 4
+                status = 3
             if event.key == pygame.K_RIGHT:
-                status = 5
+                status = 4
         if event.type == pygame.KEYUP:
             status = 0
 
