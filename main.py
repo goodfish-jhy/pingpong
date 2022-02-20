@@ -1,6 +1,7 @@
 import pygame
 import pygame_menu
 from ball import Ball
+from pad import Pad
 
 pygame.init()
 timer = pygame.time.Clock()
@@ -48,6 +49,10 @@ menu.add.selector("Diff:", [('easy', 8), ('normal', 16), ('hard', 24)], onchange
 menu.add.button("Quit", stop_game)
 
 ball = Ball()
+pad = Pad(310,540)
+
+g_pad = pygame.sprite.Group()
+g_pad.add(pad)
 
 while keep_running:
     events = pygame.event.get()
@@ -57,6 +62,7 @@ while keep_running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 is_menu_display = True
+            pad.update(event.key)
     if is_menu_display:
         menu.update(events)
         menu.draw(screen)
@@ -65,6 +71,7 @@ while keep_running:
     else:
         screen.fill(WHITE)
         screen.blit(ball.img, (ball.x, ball.y))
+        g_pad.draw(screen)
         ball.sport()
         ball.touch_edge(SCREEN_WIDTH, SCREEN_HEIGHT)
     pygame.display.update()
