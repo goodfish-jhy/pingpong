@@ -19,10 +19,14 @@ class Pad(pygame.sprite.Sprite):
 
     def update(self, status):
         if status == 1:
-            self.rect.y -= self.speed
+            if self.rect.y >= 230:
+               self.rect.y -= self.speed
         if status == 2:
-            self.rect.y += self.speed
+            if self.rect.y <= 540:
+                self.rect.y += self.speed
         if status == 3:
-            self.rect.x -= self.speed
+            if self.rect.x >= 0:
+                self.rect.x -= self.speed
         if status == 4:
-            self.rect.x -= self.speed
+            if self.rect.x <= 700:
+                self.rect.x -= self.speed
